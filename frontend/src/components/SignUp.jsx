@@ -28,12 +28,7 @@ const SignUp = () => {
       });
       if (res.data.success) {
         navigate('/login')
-        console.log(res
-          
-
-
-
-        );
+        console.log(res.data);
         toast.success(res.data.message);
       }
     } catch (error) {

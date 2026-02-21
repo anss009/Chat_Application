@@ -1,9 +1,13 @@
 import React from 'react'
+import SideBar from './SideBar'
+import MessageContainer from './MessageContainer'
 
 const HomePage = () => {
     return (
-        <div className="text-center">
-            <h3 className="text-2xl font-semibold">This is Home Page</h3>
+        <div className='flex sm:h-[450px] md:h-[550px] rounded-lg overflow-hidden bg-white/10 backdrop-blur-lg border border-white/20 shadow-xl'>
+            <SideBar />
+            <div className='divider divider-horizontal px-1 mx-0 hidden md:flex'></div>
+            <MessageContainer />
         </div>
     )
 }

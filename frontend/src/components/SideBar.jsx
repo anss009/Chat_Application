@@ -25,7 +25,7 @@ const SideBar = () => {
   }
   return (
     <div className='border-r border-slate-500 p-4 flex flex-col w-full md:w-[350px]'>
-      <form action="" className='flex items-center gap-2'>
+      <form onSubmit={(e) => e.preventDefault()} action="" className='flex items-center gap-2'>
         <input
           type="text"
           className='input input-bordered rounded-full bg-zinc-700/50 text-white placeholder:text-zinc-400 border-zinc-600 focus:border-zinc-500 h-10 transition-all duration-300'

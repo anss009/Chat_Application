@@ -7,6 +7,7 @@ const OtherUser = ({ user }) => {
   const { selectedUser } = useSelector(store => store.user);
 
   const selectedUserHandler = (user) => {
+    console.log("Selected User Clicked:", user?.fullname);
     dispatch(setSelectedUser(user));
   }
 

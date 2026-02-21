@@ -1,5 +1,5 @@
 import React from 'react'
-import OtherUser from './OtherUSer'
+import OtherUser from './OtherUser'
 import { useSelector } from 'react-redux'
 
 const OtherUsers = () => {

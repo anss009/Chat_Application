@@ -1,13 +1,16 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { IoSearchOutline } from "react-icons/io5";
 import OtherUsers from './OtherUsers';
 import axios from 'axios';
 import toast from 'react-hot-toast'
 import { useNavigate } from "react-router-dom"
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { setAuthUser, setOtherUsers, setSelectedUser } from '../redux/userSlice';
 
 const SideBar = () => {
+  const [search, setSearch] = useState("");
+  const { otherUsers } = useSelector(store => store.user);
+
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
@@ -23,10 +26,21 @@ const SideBar = () => {
       console.log(error);
     }
   }
+  const onSubmitHandler = (e) => {
+    e.preventDefault();
+    const conversationUser = otherUsers?.find((user) => user.fullname.toLowerCase().includes(search.toLowerCase()));
+    if (conversationUser) {
+      dispatch(setSelectedUser(conversationUser));
+    } else {
+      toast.error("User not found");
+    }
+  }
   return (
     <div className='border-r border-slate-500 p-4 flex flex-col w-full md:w-[350px]'>
-      <form onSubmit={(e) => e.preventDefault()} action="" className='flex items-center gap-2'>
+      <form onSubmit={onSubmitHandler} action="" className='flex items-center gap-2'>
         <input
+          value={search}
+          onChange={(e) => setSearch(e.target.value)}
           type="text"
           className='input input-bordered rounded-full bg-zinc-700/50 text-white placeholder:text-zinc-400 border-zinc-600 focus:border-zinc-500 h-10 transition-all duration-300'
           placeholder='Search...'
@@ -36,7 +50,7 @@ const SideBar = () => {
         </button>
       </form>
       <div className="divider px-3"></div>
-      <OtherUsers />
+      <OtherUsers search={search} />
       <div className='mt-auto pt-4'>
         <button onClick={logOutHandler} className='btn btn-sm btn-ghost text-white hover:bg-white/10'>Logout</button>
       </div>

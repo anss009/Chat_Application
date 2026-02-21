@@ -1,5 +1,6 @@
 import React from 'react'
 import SendInput from './SendInput'
+import Messages from './Messages'
 
 const MessageContainer = () => {
   return (
@@ -9,12 +10,7 @@ const MessageContainer = () => {
         <span className='text-white font-bold'>John Doe</span>
       </div>
 
-      <div className='flex-1 overflow-auto px-4 py-2 space-y-4'>
-        {/* Messages will be rendered here */}
-        <div className='flex flex-col items-center justify-center h-full text-gray-400'>
-          <p>Select a chat to start messaging</p>
-        </div>
-      </div>
+      <Messages />
 
       <SendInput />
     </div>

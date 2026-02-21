@@ -1,8 +1,28 @@
 import React from 'react'
 import { IoSearchOutline } from "react-icons/io5";
 import OtherUsers from './OtherUsers';
+import axios from 'axios';
+import toast from 'react-hot-toast'
+import { useNavigate } from "react-router-dom"
+import { useDispatch } from "react-redux";
+import { setAuthUser, setOtherUsers, setSelectedUser } from '../redux/userSlice';
 
 const SideBar = () => {
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
+
+  const logOutHandler = async () => {
+    try {
+      const res = await axios.get('http://localhost:3000/api/v1/user/logout', { withCredentials: true });
+      navigate("/login");
+      toast.success(res.data.message);
+      dispatch(setAuthUser(null));
+      dispatch(setOtherUsers(null));
+      dispatch(setSelectedUser(null));
+    } catch (error) {
+      console.log(error);
+    }
+  }
   return (
     <div className='border-r border-slate-500 p-4 flex flex-col w-full md:w-[350px]'>
       <form action="" className='flex items-center gap-2'>
@@ -18,7 +38,7 @@ const SideBar = () => {
       <div className="divider px-3"></div>
       <OtherUsers />
       <div className='mt-auto pt-4'>
-        <button className='btn btn-sm btn-ghost text-white hover:bg-white/10'>Logout</button>
+        <button onClick={logOutHandler} className='btn btn-sm btn-ghost text-white hover:bg-white/10'>Logout</button>
       </div>
     </div>
   )

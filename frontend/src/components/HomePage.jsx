@@ -1,8 +1,11 @@
 import React from 'react'
 import SideBar from './SideBar'
 import MessageContainer from './MessageContainer'
+import useGetOtherUsers from '../hooks/useGetOtherUsers'
 
 const HomePage = () => {
+    useGetOtherUsers();
+
     return (
         <div className='flex sm:h-[450px] md:h-[550px] rounded-lg overflow-hidden bg-white/10 backdrop-blur-lg border border-white/20 shadow-xl'>
             <SideBar />

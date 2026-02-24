@@ -17,12 +17,21 @@ const userSlice = createSlice({
         },
         setSelectedUser: (state, action) => {
             state.selectedUser = action.payload;
-        }   ,
+        },
         setOnlineUsers: (state, action) => {
             state.onlineUsers = action.payload;
+        },
+        moveUserToTop: (state, action) => {
+            const userId = action.payload;
+            const index = state.otherUsers.findIndex(user => user._id === userId);
+            if (index !== -1) {
+                const user = state.otherUsers[index];
+                state.otherUsers.splice(index, 1);
+                state.otherUsers.unshift(user);
+            }
         }
     }
 });
 
-export const { setAuthUser, setOtherUsers, setSelectedUser, setOnlineUsers } = userSlice.actions
+export const { setAuthUser, setOtherUsers, setSelectedUser, setOnlineUsers, moveUserToTop } = userSlice.actions
 export default userSlice.reducer

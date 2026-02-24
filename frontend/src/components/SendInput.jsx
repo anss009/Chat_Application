@@ -3,6 +3,7 @@ import { IoSend } from "react-icons/io5";
 import axios from "axios";
 import { useDispatch, useSelector } from "react-redux";
 import { setMessages, addMessage } from "../redux/messageSlice";
+import { moveUserToTop } from "../redux/userSlice";
 
 const SendInput = () => {
   const [message, setMessage] = useState("");
@@ -23,6 +24,7 @@ const SendInput = () => {
       if (res.data.success) {
         console.log("MESSAGE SENT SUCCESSFULLY ✅", res.data.newMessage);
         dispatch(addMessage(res.data.newMessage));
+        dispatch(moveUserToTop(selectedUser?._id));
       }
     } catch (error) {
       console.error("FAILED TO SEND MESSAGE ❌", error);

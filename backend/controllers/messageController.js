@@ -1,5 +1,6 @@
 import { Conversation } from "../models/conversation.js";
 import { Message } from "../models/messageModel.js";
+import { getReceiverSocketId, io } from "../socket/socket.js";
 
 export const sendMessage = async (req, res) => {
     try {
@@ -26,6 +27,16 @@ export const sendMessage = async (req, res) => {
         }
 
         await gotConversation.save();
+
+        const receiverSocketId = getReceiverSocketId(receiverId);
+        console.log(`EMITTING MESSAGE TO ${receiverId} (Socket: ${receiverSocketId})`);
+
+        if (receiverSocketId) {
+            io.to(receiverSocketId).emit("newMessage", newMessage);
+            console.log("EMIT SUCCESSFUL");
+        } else {
+            console.log("EMIT FAILED: Receiver is not online");
+        }
 
         return res.status(201).json({
             success: true,

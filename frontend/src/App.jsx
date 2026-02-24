@@ -39,6 +39,11 @@ function App() {
         }
       });
       dispatch(setSocket(socket));
+
+      socket.on("connect", () => {
+        console.log("SOCKET_CLIENT: Connected successfully to server ✅");
+      });
+
       socket.on("getOnlineUsers", (onlineUsers) => {
         console.log("RECEIVED ONLINE USERS FROM SERVER:", onlineUsers);
         dispatch(setOnlineUsers(onlineUsers));

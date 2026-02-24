@@ -10,15 +10,16 @@ const io = new Server(server, {
         methods: ["GET", "POST"],
     },
 });
-
-
 const userSocketMap = {}; // {userId: socketId}
 
-io.on("connection", (socket) => {
-    console.log("User connected", socket.id);
+export const getReceiverSocketId = (receiverId) => {
+    return userSocketMap[receiverId];
+}
 
+io.on("connection", (socket) => {
     const userId = socket.handshake.query.userId;
-    if (userId !== undefined) {
+    console.log(`SocketServer: User ${userId || 'unknown'} connected (${socket.id})`);
+    if (userId && userId !== "undefined") {
         userSocketMap[userId] = socket.id;
     }
 

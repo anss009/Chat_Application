@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import { IoSend } from "react-icons/io5";
 import axios from "axios";
 import { useDispatch, useSelector } from "react-redux";
-import { setMessages } from "../redux/messageSlice";
+import { setMessages, addMessage } from "../redux/messageSlice";
 
 const SendInput = () => {
   const [message, setMessage] = useState("");
@@ -19,12 +19,13 @@ const SendInput = () => {
         },
         withCredentials: true
       });
-      console.log(res)
+      console.log("SENDING MESSAGE ->", message);
       if (res.data.success) {
-        dispatch(setMessages([...(messages || []), res?.data?.newMessage]));
+        console.log("MESSAGE SENT SUCCESSFULLY ✅", res.data.newMessage);
+        dispatch(addMessage(res.data.newMessage));
       }
     } catch (error) {
-      console.log(error);
+      console.error("FAILED TO SEND MESSAGE ❌", error);
     }
     setMessage("");
   }

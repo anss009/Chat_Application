@@ -19,14 +19,14 @@ export const register = async (req, res) => {
             return res.status(400).json({ message: "Username already exists" });
         }
         const hashedPassword = await bcrypt.hash(password, 10)
-        const maleProfilePhoto = `https://icon-library.com/icon/boy-icon-png-27.html?username=${username}`;
-        const femaleProfilePhoto = `https://icon-library.com/icon/female-employee-icon-15.html?username=${username}`;
+        const maleProfilePhoto = `https://static.vecteezy.com/system/resources/previews/014/388/508/non_2x/avatar-portrait-of-a-young-caucasian-boy-man-in-round-blue-frame-illustration-in-cartoon-flat-style-vector.jpg`;
+        const femaleProfilePhoto = `https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTK3ld3OtGOABKUv-gxfVyfus01zn5Dpx_5-2EYaONOTct5BCR10RXMyoA&s`;
 
         await User.create({
             fullname,
             username,
             password: hashedPassword,
-            profilePhoto: gender === "Male" ? maleProfilePhoto : femaleProfilePhoto,
+            profilePhoto: profilePhoto || (gender === "Male" ? maleProfilePhoto : femaleProfilePhoto),
             gender
         });
         res.status(201).json({
@@ -72,6 +72,7 @@ export const login = async (req, res) => {
             username: user.username,
             fullname: user.fullname,
             profilePhoto: user.profilePhoto,
+            gender: user.gender,
             message: `Welcome back ${user.fullname}`,
             success: true
         });

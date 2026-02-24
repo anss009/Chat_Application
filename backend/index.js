@@ -8,13 +8,13 @@ import cors from 'cors';
 
 dotenv.config();
 
-const app = express();
+import { app, server } from './socket/socket.js';
 const port = process.env.PORT || 3000;
 
 // Middleware
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
-app.use(cookieParser());
+app.use(cookieParser())
 const corsOptions = {
     origin: ["http://localhost:5174", "http://localhost:5173"],
     credentials: true,
@@ -27,7 +27,7 @@ app.use("/api/v1/message", messageRoute);
 const startServer = async () => {
     try {
         await connectDB();
-        app.listen(port, () => {
+        server.listen(port, () => {
             console.log(`App is listening on port ${port}`);
         });
     } catch (error) {

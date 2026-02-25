@@ -4,10 +4,31 @@ import { User } from "../models/userModel.js";
 
 export const register = async (req, res) => {
     try {
-        const { fullname, username, password, confirmedPassword, gender, profilePhoto } = req.body;
+        let { fullname, username, password, confirmedPassword, gender, profilePhoto } = req.body;
 
         if (!fullname || !username || !password || !confirmedPassword || !gender) {
             return res.status(400).json({ message: "All fields are required" });
+        }
+
+        // Clean up fullname: collapse multiple spaces and trim
+        fullname = fullname.replace(/\s\s+/g, ' ').trim();
+
+        if (fullname.length < 3 || fullname.length > 40) {
+            return res.status(400).json({ message: "Full Name must be between 3 and 40 characters" });
+        }
+
+        if (username.length < 3 || username.length > 20) {
+            return res.status(400).json({ message: "Username must be between 3 and 20 characters" });
+        }
+
+        // Username should not contain spaces and should be alphanumeric
+        const usernameRegex = /^[a-zA-Z0-9_]+$/;
+        if (!usernameRegex.test(username)) {
+            return res.status(400).json({ message: "Username can only contain letters, numbers, and underscores (no spaces)" });
+        }
+
+        if (password.length < 6 || password.length > 25) {
+            return res.status(400).json({ message: "Password must be between 6 and 25 characters" });
         }
 
         if (password !== confirmedPassword) {

@@ -63,6 +63,9 @@ const SignUp = () => {
               type='text'
               placeholder='Enter Full Name'
               className='w-full input input-bordered h-10 bg-gray-800/50 text-white placeholder:text-white border-gray-700'
+              required
+              minLength={3}
+              maxLength={40}
             />
           </div>
 
@@ -72,10 +75,13 @@ const SignUp = () => {
             </label>
             <input
               value={user.username}
-              onChange={(e) => setUser({ ...user, username: e.target.value })}
+              onChange={(e) => setUser({ ...user, username: e.target.value.trim() })}
               type='text'
               placeholder='Enter Username'
               className='w-full input input-bordered h-10 bg-gray-800/50 text-white placeholder:text-white border-gray-700'
+              required
+              minLength={3}
+              maxLength={20}
             />
           </div>
 
@@ -89,6 +95,9 @@ const SignUp = () => {
               type='password'
               placeholder='Enter Password'
               className='w-full input input-bordered h-10 bg-gray-800/50 text-white placeholder:text-white border-gray-700'
+              required
+              minLength={6}
+              maxLength={25}
             />
           </div>
 
@@ -102,6 +111,9 @@ const SignUp = () => {
               type='password'
               placeholder='Confirm Password'
               className='w-full input input-bordered h-10 bg-gray-800/50 text-white placeholder:text-white border-gray-700'
+              required
+              minLength={6}
+              maxLength={25}
             />
           </div>
 

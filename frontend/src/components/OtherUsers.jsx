@@ -3,7 +3,7 @@ import OtherUser from './OtherUser'
 import { useSelector } from 'react-redux'
 
 const OtherUsers = ({ search }) => {
-    const { otherUsers, onlineUsers } = useSelector(store => store.user);
+    const { otherUsers } = useSelector(store => store.user);
 
     if (!otherUsers) return null;
 

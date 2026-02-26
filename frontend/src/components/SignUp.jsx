@@ -124,7 +124,7 @@ const SignUp = () => {
                 <input type='checkbox'
                   checked={user.gender === "Male"}
                   onChange={() => handleCheckBoxChange("Male")}
-                  className='checkbox checkbox-primary border-slate-900' />
+                  className='checkbox border-slate-400 [--chkbg:white] [--chkfg:black] checked:border-white' />
               </label>
             </div>
             <div className='form-control'>
@@ -133,7 +133,7 @@ const SignUp = () => {
                 <input type='checkbox'
                   checked={user.gender === "Female"}
                   onChange={() => handleCheckBoxChange("Female")}
-                  className='checkbox checkbox-primary border-slate-900' />
+                  className='checkbox border-slate-400 [--chkbg:white] [--chkfg:black] checked:border-white' />
               </label>
             </div>
           </div>

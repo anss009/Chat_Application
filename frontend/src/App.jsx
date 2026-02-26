@@ -1,30 +1,48 @@
 import './App.css'
-import { createBrowserRouter, RouterProvider } from 'react-router-dom'
+import { createBrowserRouter, RouterProvider, Navigate } from 'react-router-dom'
 import HomePage from './components/HomePage'
 import Login from './components/Login'
 import SignUp from './components/SignUp'
+import Welcome from './components/Welcome'
 import { Toaster } from 'react-hot-toast'
-import { useEffect, useState } from 'react'
+import { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { io } from 'socket.io-client';
 import { setSocket } from './redux/socketSlice';
 import { setOnlineUsers } from './redux/userSlice';
+
+// Protected route: shows HomePage if logged in, redirects to /welcome if not
+const ProtectedRoute = () => {
+  const { authUser } = useSelector(store => store.user);
+  return authUser ? <HomePage /> : <Navigate to="/welcome" />;
+};
+
+// Guest route: shows component if NOT logged in, redirects to / if already logged in
+const GuestRoute = ({ children }) => {
+  const { authUser } = useSelector(store => store.user);
+  return authUser ? <Navigate to="/" /> : children;
+};
+
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <HomePage />
+    element: <ProtectedRoute />
+  },
+  {
+    path: "/welcome",
+    element: <GuestRoute><Welcome /></GuestRoute>
   },
   {
     path: "/login",
-    element: <Login />
+    element: <GuestRoute><Login /></GuestRoute>
   },
   {
     path: "/register",
-    element: <SignUp />
+    element: <GuestRoute><SignUp /></GuestRoute>
   },
   {
     path: "/signup",
-    element: <SignUp />
+    element: <GuestRoute><SignUp /></GuestRoute>
   }
 ])
 

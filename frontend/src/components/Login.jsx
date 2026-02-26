@@ -23,9 +23,15 @@ const Login = () => {
         withCredentials: true
       });
       if (res.data.success) {
+        dispatch(setAuthUser({
+          _id: res.data._id,
+          username: res.data.username,
+          fullname: res.data.fullname,
+          profilePhoto: res.data.profilePhoto,
+          gender: res.data.gender,
+        }));
         navigate('/')
         toast.success(res.data.message);
-        dispatch(setAuthUser(res.data));
       }
     } catch (error) {
       console.error("Login Error:", error);

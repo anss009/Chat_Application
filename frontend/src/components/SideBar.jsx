@@ -16,7 +16,7 @@ const SideBar = () => {
 
   const logOutHandler = async () => {
     try {
-      const res = await axios.get('http://localhost:3000/api/v1/user/logout', { withCredentials: true });
+      const res = await axios.get(`${import.meta.env.VITE_API_URL}/api/v1/user/logout`, { withCredentials: true });
       navigate("/login");
       toast.success(res.data.message);
       dispatch(setAuthUser(null));

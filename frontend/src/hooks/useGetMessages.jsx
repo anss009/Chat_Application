@@ -13,7 +13,7 @@ const useGetMessages = () => {
         if (!selectedUser?._id) return;
         dispatch(setMessages(null)); // Clear old messages before fetching new ones
         axios.defaults.withCredentials = true;
-        const res = await axios.get(`http://localhost:3000/api/v1/message/${selectedUser?._id}`);
+        const res = await axios.get(`${import.meta.env.VITE_API_URL}/api/v1/message/${selectedUser?._id}`);
         if (res.data.messages) {
           dispatch(setMessages(res.data.messages));
         }

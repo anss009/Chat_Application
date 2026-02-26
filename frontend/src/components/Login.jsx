@@ -16,7 +16,7 @@ const Login = () => {
   const onSubmit = async (e) => {
     e.preventDefault();
     try {
-      const res = await axios.post(`http://localhost:3000/api/v1/user/login`, user, {
+      const res = await axios.post(`${import.meta.env.VITE_API_URL}/api/v1/user/login`, user, {
         headers: {
           'Content-Type': 'application/json'
         },

@@ -7,7 +7,7 @@ import { useNavigate } from "react-router-dom"
 import { useDispatch, useSelector } from "react-redux";
 import { setAuthUser, setOtherUsers, setSelectedUser } from '../redux/userSlice';
 
-const SideBar = () => {
+const SideBar = ({ onUserSelect }) => {
   const [search, setSearch] = useState("");
   const { otherUsers } = useSelector(store => store.user);
 
@@ -31,18 +31,19 @@ const SideBar = () => {
     const conversationUser = otherUsers?.find((user) => user.fullname.toLowerCase().includes(search.toLowerCase()));
     if (conversationUser) {
       dispatch(setSelectedUser(conversationUser));
+      onUserSelect?.();
     } else {
       toast.error("User not found");
     }
   }
   return (
-    <div className='border-r border-slate-500 p-4 flex flex-col w-full md:w-[350px]'>
+    <div className='border-r border-slate-500 p-4 flex flex-col w-full h-full'>
       <form onSubmit={onSubmitHandler} action="" className='flex items-center gap-2'>
         <input
           value={search}
           onChange={(e) => setSearch(e.target.value)}
           type="text"
-          className='input input-bordered rounded-full bg-zinc-700/50 text-white placeholder:text-zinc-400 border-zinc-600 focus:border-zinc-500 h-10 transition-all duration-300'
+          className='input input-bordered rounded-full bg-zinc-700/50 text-white placeholder:text-zinc-400 border-zinc-600 focus:border-zinc-500 h-10 transition-all duration-300 flex-1'
           placeholder='Search...'
         />
         <button type='submit' className='btn btn-circle bg-zinc-700/50 text-white border-zinc-600 hover:bg-zinc-600/50 min-h-10 h-10 w-10 transition-all duration-300'>
@@ -50,7 +51,7 @@ const SideBar = () => {
         </button>
       </form>
       <div className="divider px-3"></div>
-      <OtherUsers search={search} />
+      <OtherUsers search={search} onUserSelect={onUserSelect} />
       <div className='mt-auto pt-4'>
         <button onClick={logOutHandler} className='btn btn-sm btn-ghost text-white hover:bg-white/10'>Logout</button>
       </div>

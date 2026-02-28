@@ -2,16 +2,14 @@ import React from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 import { setSelectedUser } from '../redux/userSlice';
 
-const OtherUser = ({ user }) => {
+const OtherUser = ({ user, onUserSelect }) => {
   const dispatch = useDispatch();
   const { selectedUser, onlineUsers } = useSelector(store => store.user);
-  const isOnline = onlineUsers?.includes(user?._id); 
-
-  // LOG FOR DEBUGGING - Check your browser console!
-  console.log(`Checking status for ${user?.fullname}: isOnline = ${isOnline}`, "Online Users List:", onlineUsers);
+  const isOnline = onlineUsers?.includes(user?._id);
 
   const selectedUserHandler = (user) => {
     dispatch(setSelectedUser(user));
+    onUserSelect?.();
   }
 
   const maleAvatar = "https://static.vecteezy.com/system/resources/previews/014/388/508/non_2x/avatar-portrait-of-a-young-caucasian-boy-man-in-round-blue-frame-illustration-in-cartoon-flat-style-vector.jpg";
@@ -27,7 +25,6 @@ const OtherUser = ({ user }) => {
           <div className='w-12 rounded-full border-2 border-zinc-600'>
             <img src={isProfilePhotoValid ? user.profilePhoto : (user?.gender === "Male" ? maleAvatar : femaleAvatar)} alt="user-profile" />
           </div>
-          {/* Manual Backup Green Dot for testing */}
           {isOnline && <div className="absolute bottom-0 right-0 w-3 h-3 bg-green-500 rounded-full border-2 border-white"></div>}
         </div>
         <div className='flex flex-col flex-1'>

@@ -2,7 +2,7 @@ import React from 'react'
 import OtherUser from './OtherUser'
 import { useSelector } from 'react-redux'
 
-const OtherUsers = ({ search }) => {
+const OtherUsers = ({ search, onUserSelect }) => {
     const { otherUsers } = useSelector(store => store.user);
 
     if (!otherUsers) return null;
@@ -20,7 +20,7 @@ const OtherUsers = ({ search }) => {
             {
                 sortedUsers?.map((user) => {
                     return (
-                        <OtherUser key={user._id} user={user} />
+                        <OtherUser key={user._id} user={user} onUserSelect={onUserSelect} />
                     )
                 })
             }

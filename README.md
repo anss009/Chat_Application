@@ -6,16 +6,16 @@ A modern, full-stack real-time chat application built with the MERN stack and So
 
 ---
 
-## ✨ Features
+## Features
 
-- 🔐 **Secure Authentication** — JWT tokens, bcrypt password hashing, HTTP-only cookies
-- 💬 **Real-Time Messaging** — Instant delivery powered by WebSockets (Socket.IO)
-- 🟢 **Live Online Status** — See who's active in real time
-- 📊 **Smart Sidebar** — Conversations sorted by most recent activity
-- 🛡️ **Input Validation** — Dual-layer validation on client and server
-- 💾 **Persistent Sessions** — Stay logged in across page refreshes (Redux Persist)
-- 🚪 **Welcome Page** — Guest landing page with Login/Sign Up options
-- ✨ **Modern UI** — Glassmorphism design with smooth animations and dark theme
+- Secure Authentication** — JWT tokens, bcrypt password hashing, HTTP-only cookies
+- Real-Time Messaging** — Instant delivery powered by WebSockets (Socket.IO)
+- Live Online Status** — See who's active in real time
+- Smart Sidebar** — Conversations sorted by most recent activity
+- Input Validation** — Dual-layer validation on client and server
+- Persistent Sessions** — Stay logged in across page refreshes (Redux Persist)
+- Welcome Page** — Guest landing page with Login/Sign Up options
+- Modern UI** — Glassmorphism design with smooth animations and dark theme
 
 ---
 
@@ -46,7 +46,7 @@ A modern, full-stack real-time chat application built with the MERN stack and So
 
 ---
 
-## 📂 Project Structure
+## Project Structure
 
 ```
 Chat_Application/
@@ -71,7 +71,7 @@ Chat_Application/
 
 ---
 
-## 🚀 Getting Started
+## Getting Started
 
 ### Prerequisites
 - Node.js (v18+)
@@ -123,7 +123,7 @@ Visit `http://localhost:5173` in your browser.
 
 ---
 
-## 🌐 Deployment
+## Deployment
 
 | Service | Platform |
 |---------|----------|
@@ -133,14 +133,10 @@ Visit `http://localhost:5173` in your browser.
 
 ---
 
-## 👤 Author
+## Author
 
 **Anss** — Full-Stack Developer (Solo)
 
 Designed, developed, and deployed the entire application end-to-end.
 
 ---
-
-## 📄 License
-
-This project is open source and available under the [MIT License](LICENSE).

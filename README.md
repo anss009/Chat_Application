@@ -1,8 +1,7 @@
-# 💬 ChatApp — Real-Time Messaging Application
+ChatApp — Real-Time Messaging Application
 
 A modern, full-stack real-time chat application built with the MERN stack and Socket.IO. Features instant messaging, live online status, secure authentication, and a sleek glassmorphism UI.
-
-🔗 **Live Demo:** [chat-application-taupe-ten.vercel.app](https://chat-application-taupe-ten.vercel.app)
+**Live Demo:** [chat-application-taupe-ten.vercel.app](https://chat-application-taupe-ten.vercel.app)
 
 ---
 
@@ -19,7 +18,7 @@ A modern, full-stack real-time chat application built with the MERN stack and So
 
 ---
 
-## 🛠️ Tech Stack
+Tech Stack
 
 ### Frontend
 | Technology | Purpose |
@@ -46,7 +45,7 @@ A modern, full-stack real-time chat application built with the MERN stack and So
 
 ---
 
-## Project Structure
+Project Structure
 
 ```
 Chat_Application/
@@ -71,7 +70,7 @@ Chat_Application/
 
 ---
 
-## Getting Started
+ Getting Started
 
 ### Prerequisites
 - Node.js (v18+)
